@@ -1,5 +1,5 @@
-import * as React from 'react'
 import {
+  IconAppWindow,
   IconCamera,
   IconChartBar,
   IconDashboard,
@@ -9,13 +9,13 @@ import {
   IconFileWord,
   IconFolder,
   IconHelp,
-  IconInnerShadowTop,
   IconListDetails,
   IconReport,
   IconSearch,
   IconSettings,
   IconUsers,
 } from '@tabler/icons-react'
+import * as React from 'react'
 
 import { Link } from '@tanstack/react-router'
 import { NavDocuments } from '@/components/nav-documents'
@@ -160,8 +160,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link to="/">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <IconAppWindow className="!size-5" />
+                <span className="text-base font-semibold">
+                  TSRouter-Cognito
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
