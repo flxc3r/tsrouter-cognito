@@ -1,3 +1,3 @@
 export interface AuthState {
-  redirectTo: string;
+  redirectTo: string
 }

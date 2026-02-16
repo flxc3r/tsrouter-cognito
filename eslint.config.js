@@ -7,6 +7,10 @@ export default [
   ...tanstackConfig,
   prettier,
   {
-    rules: {},
+    rules: {
+      'sort-imports': 'off',
+      '@typescript-eslint/array-type': 'off',
+      'import/consistent-type-specifier-style': 'off',
+    },
   },
 ]
