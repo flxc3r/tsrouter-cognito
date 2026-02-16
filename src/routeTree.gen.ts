@@ -10,12 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MeRouteImport } from './routes/me'
+import { Route as LoggedOutRouteImport } from './routes/logged-out'
+import { Route as LoggedInRouteImport } from './routes/logged-in'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 
 const MeRoute = MeRouteImport.update({
   id: '/me',
   path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoggedOutRoute = LoggedOutRouteImport.update({
+  id: '/logged-out',
+  path: '/logged-out',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoggedInRoute = LoggedInRouteImport.update({
+  id: '/logged-in',
+  path: '/logged-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -32,30 +44,38 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/logged-in': typeof LoggedInRoute
+  '/logged-out': typeof LoggedOutRoute
   '/me': typeof MeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/logged-in': typeof LoggedInRoute
+  '/logged-out': typeof LoggedOutRoute
   '/me': typeof MeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/logged-in': typeof LoggedInRoute
+  '/logged-out': typeof LoggedOutRoute
   '/me': typeof MeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/me'
+  fullPaths: '/' | '/dashboard' | '/logged-in' | '/logged-out' | '/me'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/me'
-  id: '__root__' | '/' | '/dashboard' | '/me'
+  to: '/' | '/dashboard' | '/logged-in' | '/logged-out' | '/me'
+  id: '__root__' | '/' | '/dashboard' | '/logged-in' | '/logged-out' | '/me'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  LoggedInRoute: typeof LoggedInRoute
+  LoggedOutRoute: typeof LoggedOutRoute
   MeRoute: typeof MeRoute
 }
 
@@ -66,6 +86,20 @@ declare module '@tanstack/react-router' {
       path: '/me'
       fullPath: '/me'
       preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logged-out': {
+      id: '/logged-out'
+      path: '/logged-out'
+      fullPath: '/logged-out'
+      preLoaderRoute: typeof LoggedOutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logged-in': {
+      id: '/logged-in'
+      path: '/logged-in'
+      fullPath: '/logged-in'
+      preLoaderRoute: typeof LoggedInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -88,6 +122,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  LoggedInRoute: LoggedInRoute,
+  LoggedOutRoute: LoggedOutRoute,
   MeRoute: MeRoute,
 }
 export const routeTree = rootRouteImport
