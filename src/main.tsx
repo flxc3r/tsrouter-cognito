@@ -1,12 +1,14 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { AuthProvider } from 'react-oidc-context'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+import { cognitoAuthConfig } from '@/auth/cognitoAuthConfig.ts'
 
 // Create a new router instance
 const router = createRouter({
@@ -31,7 +33,9 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <AuthProvider {...cognitoAuthConfig}>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </StrictMode>,
   )
 }
