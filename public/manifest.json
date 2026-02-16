@@ -1,6 +1,6 @@
 {
-  "short_name": "TanStack App",
-  "name": "Create TanStack App Sample",
+  "short_name": "TSRouter-Cognito",
+  "name": "TSRouter-Cognito App",
   "icons": [
     {
       "src": "favicon.ico",

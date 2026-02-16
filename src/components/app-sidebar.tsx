@@ -1,23 +1,23 @@
 import {
   IconAppWindow,
   IconCamera,
-  IconChartBar,
   IconDashboard,
   IconDatabase,
   IconFileAi,
   IconFileDescription,
   IconFileWord,
-  IconFolder,
   IconHelp,
-  IconListDetails,
+  IconHome,
   IconReport,
   IconSearch,
   IconSettings,
-  IconUsers,
+  IconUserCircle,
 } from '@tabler/icons-react'
 import * as React from 'react'
 
 import { Link } from '@tanstack/react-router'
+import { useAuth } from 'react-oidc-context'
+import { LoginButton } from './auth/LoginButton'
 import { NavDocuments } from '@/components/nav-documents'
 import { NavMain } from '@/components/nav-main'
 import { NavSecondary } from '@/components/nav-secondary'
@@ -40,29 +40,19 @@ const data = {
   },
   navMain: [
     {
+      title: 'Home',
+      url: '/',
+      icon: IconHome,
+    },
+    {
       title: 'Dashboard',
       url: '/dashboard',
       icon: IconDashboard,
     },
     {
-      title: 'Lifecycle',
-      url: '#',
-      icon: IconListDetails,
-    },
-    {
-      title: 'Analytics',
-      url: '#',
-      icon: IconChartBar,
-    },
-    {
-      title: 'Projects',
-      url: '#',
-      icon: IconFolder,
-    },
-    {
-      title: 'Team',
-      url: '#',
-      icon: IconUsers,
+      title: 'Account',
+      url: '/me',
+      icon: IconUserCircle,
     },
   ],
   navClouds: [
@@ -150,6 +140,11 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const auth = useAuth()
+  const user = {
+    name: auth.user?.profile.email?.split('@')[0] ?? '',
+    email: auth.user?.profile.email ?? '',
+  }
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -175,7 +170,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {auth.isAuthenticated && auth.user ? (
+          <NavUser user={user} />
+        ) : (
+          <LoginButton auth={auth} />
+        )}
       </SidebarFooter>
     </Sidebar>
   )

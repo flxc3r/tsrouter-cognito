@@ -1,38 +1,25 @@
 import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
   component: App,
 })
 
+const TITLE_TEXT = `
+  _______ _____ _____             _                    _____                  _ _        
+ |__   __/ ____|  __ \\           | |                  / ____|                (_) |       
+    | | | (___ | |__) |___  _   _| |_ ___ _ __ ______| |     ___   __ _ _ __  _| |_ ___  
+    | |  \\___ \\|  _  // _ \\| | | | __/ _ \\ '__|______| |    / _ \\ / _\` | '_ \\| | __/ _ \\ 
+    | |  ____) | | \\ \\ (_) | |_| | ||  __/ |         | |___| (_) | (_| | | | | | || (_) |
+    |_| |_____/|_|  \\_\\___/ \\__,_|\\__\\___|_|          \\_____\\___/ \\__, |_| |_|_|\\__\\___/ 
+                                                                   __/ |                 
+                                                                  |___/                  
+`
+
 function App() {
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
+    <div className="h-full flex flex-col">
+      <header className="flex-1 flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
+        <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
       </header>
     </div>
   )

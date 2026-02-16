@@ -9,6 +9,7 @@ export const Route = createRootRoute({
   component: () => (
     <>
       <SidebarProvider
+        className="min-h-screen flex"
         style={
           {
             '--sidebar-width': 'calc(var(--spacing) * 72)',
@@ -17,22 +18,22 @@ export const Route = createRootRoute({
         }
       >
         <AppSidebar variant="inset" />
-        <SidebarInset>
+
+        {/* Main column */}
+        <SidebarInset className="flex flex-col flex-1 min-h-screen">
           <SiteHeader />
+
+          {/* Area below header */}
           <div className="flex flex-1 flex-col">
-            <div className="@container/main flex flex-1 flex-col gap-2">
-              <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-                <Outlet />
-              </div>
+            <div className="@container/main flex flex-1 flex-col">
+              <Outlet />
             </div>
           </div>
         </SidebarInset>
       </SidebarProvider>
 
       <TanStackDevtools
-        config={{
-          position: 'bottom-right',
-        }}
+        config={{ position: 'bottom-right' }}
         plugins={[
           {
             name: 'Tanstack Router',
