@@ -33,7 +33,10 @@ npm run check
 
 ## Deploying to Github Pages
 
-I followed this tutorial with a few tweaks: https://www.youtube.com/watch?v=hn1IkJk24ow
+I followed
+
+- this tutorial with a few tweaks: https://www.youtube.com/watch?v=hn1IkJk24ow
+- https://tanstack.com/router/latest/docs/how-to/deploy-to-production#github-pages
 
 ```sh
 npm run deploy
