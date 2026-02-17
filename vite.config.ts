@@ -32,7 +32,7 @@ export default defineConfig(({ command }) => {
     // command === 'build'
     return {
       ...baseConfig,
-      base: '/tsrouter-cognito', // required for GitHub Pages; this is the name of the repo
+      base: '/tsrouter-cognito/', // required for GitHub Pages; this is the name of the repo
     }
   }
 })
